@@ -62,13 +62,13 @@ for dir in subjectDirectories:
         activityCsv = pd.read_csv(join(path, activityName), header=None)
         activityCsv.columns = activityColumns
 
-        #Apertura file accellerometro e assegnazione nomi colonne
+        #Apertura file accelerometro e assegnazione nomi colonne
         accelerometerCsv = pd.read_csv(join(path, accelerometerName), header=None)
         accelerometerCsv.columns = accelerometerColumns
-        #Join sui file accellerometro e activity
+        #Join sui file accelerometro e activity
         joined = accelerometerCsv.merge(activityCsv, on="ActivityID")
         df = joined[columnExtract]
-        #Append join sul file accellerometro
+        #Append join sul file accelerometro
         df.to_csv(csvJoinedAccelerometer, mode='a', header=False, index=False)
 
         # Apertura file giroscopio e assegnazione nomi colonne
