@@ -63,34 +63,43 @@ for dir in subjectDirectories:
         activityCsv.columns = activityColumns
 
         #Apertura file accelerometro e assegnazione nomi colonne
-        accelerometerCsv = pd.read_csv(join(path, accelerometerName), header=None)
-        accelerometerCsv.columns = accelerometerColumns
-        #Join sui file accelerometro e activity
-        joined = accelerometerCsv.merge(activityCsv, on="ActivityID")
-        df = joined[columnExtract]
-        #Append join sul file accelerometro
-        df.to_csv(csvJoinedAccelerometer, mode='a', header=False, index=False)
-
+        try:
+            accelerometerFile = join(path, accelerometerName)
+            accelerometerCsv = pd.read_csv(accelerometerFile, header=None)
+            accelerometerCsv.columns = accelerometerColumns
+            #Join sui file accelerometro e activity
+            joined = accelerometerCsv.merge(activityCsv, on="ActivityID")
+            df = joined[columnExtract]
+            #Append join sul file accelerometro
+            df.to_csv(csvJoinedAccelerometer, mode='a', header=False, index=False)
+        except:
+            print("Accelerometro skyppato")
         # Apertura file giroscopio e assegnazione nomi colonne
-        gyroscopeCsv = pd.read_csv(join(path, gyroscopeName), header=None)
-        gyroscopeCsv.columns = gyroscopeColumns
-        #Join sui file giroscopio e activity
-        joined = gyroscopeCsv.merge(activityCsv, on="ActivityID")
-        #Estrazione colonne
-        df = joined[columnExtract]
-        #Append join sul file giroscopio
-        df.to_csv(csvJoinedGyroscope, mode='a', header=False, index=False)
-
+        try:
+            gyroscopeFile = join(path, accelerometerName)
+            gyroscopeCsv = pd.read_csv(gyroscopeFile, header=None)
+            gyroscopeCsv.columns = gyroscopeColumns
+            #Join sui file giroscopio e activity
+            joined = gyroscopeCsv.merge(activityCsv, on="ActivityID")
+            #Estrazione colonne
+            df = joined[columnExtract]
+            #Append join sul file giroscopio
+            df.to_csv(csvJoinedGyroscope, mode='a', header=False, index=False)
+        except:
+            print("Giroscopio skyppato")
         # Apertura file magnetometro e assegnazione nomi colonne
-        magnetometerCsv = pd.read_csv(join(path, magnetometerName), header=None)
-        magnetometerCsv.columns = magnetometerColumns
-        #Join sui file magnetometro e activity
-        joined = magnetometerCsv.merge(activityCsv, on="ActivityID")
-        #Estrazione colonne
-        df = joined[columnExtract]
-        #Append join sul file magnetometro
-        df.to_csv(csvJoinedMagnetometer, mode='a', header=False, index=False)
-
+        try:
+            magnetometerFile = join(path, magnetometerName)
+            magnetometerCsv = pd.read_csv(magnetometerFile, header=None)
+            magnetometerCsv.columns = magnetometerColumns
+            #Join sui file magnetometro e activity
+            joined = magnetometerCsv.merge(activityCsv, on="ActivityID")
+            #Estrazione colonne
+            df = joined[columnExtract]
+            #Append join sul file magnetometro
+            df.to_csv(csvJoinedMagnetometer, mode='a', header=False, index=False)
+        except:
+            print("Giroscopio skyppato")
         #Completamento
         print(dir + ": " + sessionDirectory)
 
