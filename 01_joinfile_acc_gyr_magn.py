@@ -25,11 +25,15 @@ mainPath = "C:\\Users\\tulli\\Desktop\\UNIVERSITA\\ESAMI\\VAB\\PROGETTO\\hmog_da
 csvJoinedAccelerometer = join(mainPath, "JoinedAccelerometer.csv")
 csvJoinedGyroscope = join(mainPath, "JoinedGyroscope.csv")
 csvJoinedMagnetometer = join(mainPath, "JoinedMagnetometer.csv")
-
+logFilePath=join(mainPath, "file.log")
 #Controllo che cancella i file nel caso siano già esistenti
 if path.exists(csvJoinedAccelerometer): os.remove(csvJoinedAccelerometer)
 if path.exists(csvJoinedGyroscope): os.remove(csvJoinedGyroscope)
 if path.exists(csvJoinedMagnetometer): os.remove(csvJoinedMagnetometer)
+if path.exists(logFilePath): os.remove(logFilePath)
+
+#Apro il file di log
+logFile=open(logFilePath,'a')
 
 # Colonne da estrarre sui file joinati
 columnExtract = ["ActivityID", "SysTime", "GestureScenario", "X", "Y", "Z", "PhoneOrientation"]
@@ -73,7 +77,9 @@ for dir in subjectDirectories:
             #Append join sul file accelerometro
             df.to_csv(csvJoinedAccelerometer, mode='a', header=False, index=False)
         except:
-            print("Accelerometro skyppato")
+            log = "Accelerometro skyppato"
+            print(log)
+            logFile.write(log + "\n")
         # Apertura file giroscopio e assegnazione nomi colonne
         try:
             gyroscopeFile = join(path, accelerometerName)
@@ -86,7 +92,9 @@ for dir in subjectDirectories:
             #Append join sul file giroscopio
             df.to_csv(csvJoinedGyroscope, mode='a', header=False, index=False)
         except:
-            print("Giroscopio skyppato")
+            log = "Giroscopio skyppato"
+            print(log)
+            logFile.write(log + "\n")
         # Apertura file magnetometro e assegnazione nomi colonne
         try:
             magnetometerFile = join(path, magnetometerName)
@@ -99,7 +107,13 @@ for dir in subjectDirectories:
             #Append join sul file magnetometro
             df.to_csv(csvJoinedMagnetometer, mode='a', header=False, index=False)
         except:
-            print("Giroscopio skyppato")
+            log = "Magnetometro skyppato"
+            print(log)
+            logFile.write(log + "\n")
         #Completamento
-        print(dir + ": " + sessionDirectory)
+        log=dir + ": " + sessionDirectory
+        print(log)
+        logFile.write(log+"\n")
+    logFile.flush()
 
+logFile.close()
