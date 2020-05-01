@@ -105,3 +105,8 @@ for dir in subjectDirectories:
         #Completamento
         print(dir + ": " + sessionDirectory)
 
+
+
+
+        
+
