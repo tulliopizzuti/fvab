@@ -2,20 +2,16 @@ import pandas as pd
 import os
 from os import listdir, path
 from os.path import isdir, join
-
 #Nome e descrittore di colonne per il file activity.csv
 activityName = "activity.csv"
 activityColumns = ["ActivityID", "SubjectID", "SessionNumber", "StartTime", "EndTime", "RelativeStartTime",
                    "RelativeEndTime", "GestureScenario", "TaskID", "ContentID"]
-
 #Nome e descrittore di colonne per il file accelerometer.csv
 accelerometerName = "Accelerometer.csv"
 accelerometerColumns = ["SysTime", "EventTime", "ActivityID", "X", "Y", "Z", "PhoneOrientation"]
-
 #Nome e descrittore di colonne per il file gyroscope.csv
 gyroscopeName = "Gyroscope.csv"
 gyroscopeColumns = ["SysTime", "EventTime", "ActivityID", "X", "Y", "Z", "PhoneOrientation"]
-
 #Nome e descrittore di colonne per il file magnetometer.csv
 magnetometerName = "Magnetometer.csv"
 magnetometerColumns = ["SysTime", "EventTime", "ActivityID", "X", "Y", "Z", "PhoneOrientation"]
@@ -31,13 +27,10 @@ if path.exists(csvJoinedAccelerometer): os.remove(csvJoinedAccelerometer)
 if path.exists(csvJoinedGyroscope): os.remove(csvJoinedGyroscope)
 if path.exists(csvJoinedMagnetometer): os.remove(csvJoinedMagnetometer)
 if path.exists(logFilePath): os.remove(logFilePath)
-
 #Apro il file di log
-logFile=open(logFilePath,'a')
-
+logFile = open(logFilePath,'a')
 # Colonne da estrarre sui file joinati
 columnExtract = ["ActivityID", "SysTime", "GestureScenario", "X", "Y", "Z", "PhoneOrientation"]
-
 #Estrazione della lista delle cartelle dei soggetti
 subjectDirectories = [f for f in listdir(mainPath) if isdir(join(mainPath, f))]
 #Modifica nome cartelle per mantenere l'ordinamento corretto
@@ -46,12 +39,9 @@ for dir in subjectDirectories:
     sessionDirectories = [f for f in listdir(subjectDirectory) if isdir(join(subjectDirectory, f))]
     for sessionDirectory in sessionDirectories:
         splitted = sessionDirectory.split('_')
-        splitted[2]=splitted[2].rjust(2, '0')
+        splitted[2] = splitted[2].rjust(2, '0')
         newName = ('_'.join(splitted))
         os.rename(join(subjectDirectory, sessionDirectory), join(subjectDirectory, newName))
-
-
-
 #Inizio scorrimento cartelle
 for dir in subjectDirectories:
     #Path cartella soggetto
@@ -62,13 +52,16 @@ for dir in subjectDirectories:
     for sessionDirectory in sessionDirectories:
         #Path cartella sessione
         path = join(subjectDirectory, sessionDirectory)
+        accelerometerFile = join(path, accelerometerName)
+        gyroscopeFile = join(path, gyroscopeName)
+        magnetometerFile = join(path, magnetometerName)
+        #Stringa di log
+        log = dir + ": " + sessionDirectory + "\nAccelerometro: " + accelerometerFile + "\nGiroscopio: " + gyroscopeFile + "\nMagnetometro: " + magnetometerFile + "\n"
         #Apertura file activity e assegnazione nomi colonne
         activityCsv = pd.read_csv(join(path, activityName), header=None)
         activityCsv.columns = activityColumns
-
         #Apertura file accelerometro e assegnazione nomi colonne
         try:
-            accelerometerFile = join(path, accelerometerName)
             accelerometerCsv = pd.read_csv(accelerometerFile, header=None)
             accelerometerCsv.columns = accelerometerColumns
             #Join sui file accelerometro e activity
@@ -77,12 +70,9 @@ for dir in subjectDirectories:
             #Append join sul file accelerometro
             df.to_csv(csvJoinedAccelerometer, mode='a', header=False, index=False)
         except:
-            log = "Accelerometro skyppato"
-            print(log)
-            logFile.write(log + "\n")
+            log += "Accelerometro skyppato\n"
         # Apertura file giroscopio e assegnazione nomi colonne
         try:
-            gyroscopeFile = join(path, accelerometerName)
             gyroscopeCsv = pd.read_csv(gyroscopeFile, header=None)
             gyroscopeCsv.columns = gyroscopeColumns
             #Join sui file giroscopio e activity
@@ -92,12 +82,9 @@ for dir in subjectDirectories:
             #Append join sul file giroscopio
             df.to_csv(csvJoinedGyroscope, mode='a', header=False, index=False)
         except:
-            log = "Giroscopio skyppato"
-            print(log)
-            logFile.write(log + "\n")
+            log += "Giroscopio skyppato\n"
         # Apertura file magnetometro e assegnazione nomi colonne
         try:
-            magnetometerFile = join(path, magnetometerName)
             magnetometerCsv = pd.read_csv(magnetometerFile, header=None)
             magnetometerCsv.columns = magnetometerColumns
             #Join sui file magnetometro e activity
@@ -107,13 +94,9 @@ for dir in subjectDirectories:
             #Append join sul file magnetometro
             df.to_csv(csvJoinedMagnetometer, mode='a', header=False, index=False)
         except:
-            log = "Magnetometro skyppato"
-            print(log)
-            logFile.write(log + "\n")
+            log += "Magnetometro skyppato\n"
         #Completamento
-        log=dir + ": " + sessionDirectory
         print(log)
-        logFile.write(log+"\n")
+        logFile.write(log)
     logFile.flush()
-
 logFile.close()
