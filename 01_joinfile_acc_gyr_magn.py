@@ -3,7 +3,7 @@ import os
 from os import listdir, path
 from os.path import isdir, join
 #Nome e descrittore di colonne per il file activity.csv
-activityName = "activity.csv"
+activityName = "Activity.csv"
 activityColumns = ["ActivityID", "SubjectID", "SessionNumber", "StartTime", "EndTime", "RelativeStartTime",
                    "RelativeEndTime", "GestureScenario", "TaskID", "ContentID"]
 #Nome e descrittore di colonne per il file accelerometer.csv
@@ -16,7 +16,7 @@ gyroscopeColumns = ["SysTime", "EventTime", "ActivityID", "X", "Y", "Z", "PhoneO
 magnetometerName = "Magnetometer.csv"
 magnetometerColumns = ["SysTime", "EventTime", "ActivityID", "X", "Y", "Z", "PhoneOrientation"]
 #Path principale del dataset, contenente le cartelle con le sessioni dei soggetti
-mainPath = "C:\\Users\\tulli\\Desktop\\UNIVERSITA\\ESAMI\\VAB\\PROGETTO\\hmog_dataset\\public_dataset\\"
+mainPath = "/home/tullio/Projects/fvab_dataset/public_dataset"
 #File generati dopo l'esecuzione
 csvJoinedAccelerometer = join(mainPath, "JoinedAccelerometer.csv")
 csvJoinedGyroscope = join(mainPath, "JoinedGyroscope.csv")
@@ -33,6 +33,7 @@ logFile = open(logFilePath,'a')
 columnExtract = ["ActivityID", "SysTime", "GestureScenario", "X", "Y", "Z", "PhoneOrientation"]
 #Estrazione della lista delle cartelle dei soggetti
 subjectDirectories = [f for f in listdir(mainPath) if isdir(join(mainPath, f))]
+subjectDirectories.sort()
 #Modifica nome cartelle per mantenere l'ordinamento corretto
 for dir in subjectDirectories:
     subjectDirectory = join(mainPath, dir)
@@ -48,6 +49,7 @@ for dir in subjectDirectories:
     subjectDirectory = join(mainPath, dir)
     #Lista sessioni del soggetto
     sessionDirectories = [f for f in listdir(subjectDirectory) if isdir(join(subjectDirectory, f))]
+    sessionDirectories.sort()
     #Scorrimento sessioni
     for sessionDirectory in sessionDirectories:
         #Path cartella sessione
