@@ -1,11 +1,8 @@
 import os
-from os import listdir
 from os.path import isdir, join
 from os import listdir, path
 import pandas as pd
-import numpy as np
-'''
-'''
+
 
 def filterRowActivityScenarioOrientation(row):
     return (row["ActivityIDAcc"] == row["ActivityIDAcc"] == row["ActivityIDAcc"] and
