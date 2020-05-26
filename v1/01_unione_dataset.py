@@ -1,9 +1,7 @@
 import os
-from os import listdir
 from os.path import isdir, join
 from os import listdir, path
 import pandas as pd
-import numpy as np
 
 
 def filterRowActivityScenarioOrientation(row):
@@ -13,7 +11,7 @@ def filterRowActivityScenarioOrientation(row):
 
 
 # N° di cartelle da analizzare
-firstNFolder = 2
+firstNFolder = 100
 total=firstNFolder*24
 # Nome e descrittore di colonne per il file activity.csv
 activityName = "Activity.csv"

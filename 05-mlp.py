@@ -6,7 +6,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 
-mainFilePath = '/home/tullio/Projects/fvab_dataset/public_dataset'
+mainFilePath = '/home/tullio/Projects/fvab_dataset/joined_dataset2'
 fileDataset = "JoinSensors.csv"
 pathDataset = join(mainFilePath, fileDataset)
 columns = ["GestureScenario","XAcc", "YAcc", "ZAcc",
