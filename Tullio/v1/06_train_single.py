@@ -20,3 +20,6 @@ X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.3, random
 mlp = MLPClassifier(
     random_state=0, max_iter=1000, verbose=True).fit(X_train,y_train)
 print(mlp.score(X_test,y_test))
+'''
+0.9097729948100071
+'''
