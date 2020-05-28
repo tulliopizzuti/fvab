@@ -2,7 +2,7 @@ import os
 from os.path import join
 from os import path
 import pandas as pd
-mainPath = "/home/tullio/Projects/fvab_dataset/public_dataset100"
+mainPath = "/home/tullio/Scrivania/Projects/fvab_dataset/public_dataset100/02_SplitSitWalk"
 
 joinedFile = "JoinSensors.csv"
 filePathJoin=join(mainPath,joinedFile)
@@ -25,10 +25,10 @@ filePathMeanWalk=join(mainPath,fileMeanWalk)
 if path.exists(filePathMeanSit): os.remove(filePathMeanSit)
 if path.exists(filePathMeanWalk): os.remove(filePathMeanWalk)
 
-chunksize = 10 ** 3
+chunksize = 10 ** 1
 printHeadSit=True
 printHeadWalk=True
-
+'''
 i=0
 for chunk in pd.read_csv(filePathSit, chunksize=chunksize):
     i+=1
@@ -37,7 +37,7 @@ for chunk in pd.read_csv(filePathSit, chunksize=chunksize):
     printHeadSit=False
     print("Sit chunk: "+str(i))
 
-
+'''
 i=0
 for chunk in pd.read_csv(filePathWalk, chunksize=chunksize):
     i+=1
