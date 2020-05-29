@@ -5,7 +5,7 @@ import pandas as pd
 
 
 def filterRowActivityScenarioOrientation(row):
-    return (row["ActivityIDAcc"] == row["ActivityIDAcc"] == row["ActivityIDAcc"] and
+    return (row["ActivityIDAcc"] == row["ActivityIDGyro"] == row["ActivityIDMagn"] and
             row["GestureScenarioAcc"] == row["GestureScenarioGyro"] == row["GestureScenarioMagn"] and
             row["PhoneOrientationAcc"] == row["PhoneOrientationGyro"] == row["PhoneOrientationMagn"])
 
