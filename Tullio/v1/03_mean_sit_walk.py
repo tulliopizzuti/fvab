@@ -28,7 +28,7 @@ if path.exists(filePathMeanWalk): os.remove(filePathMeanWalk)
 chunksize = 10 ** 1
 printHeadSit=True
 printHeadWalk=True
-'''
+
 i=0
 for chunk in pd.read_csv(filePathSit, chunksize=chunksize):
     i+=1
@@ -37,7 +37,7 @@ for chunk in pd.read_csv(filePathSit, chunksize=chunksize):
     printHeadSit=False
     print("Sit chunk: "+str(i))
 
-'''
+
 i=0
 for chunk in pd.read_csv(filePathWalk, chunksize=chunksize):
     i+=1
