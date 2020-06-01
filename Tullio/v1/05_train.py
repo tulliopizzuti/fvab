@@ -20,7 +20,7 @@ X = scaler.fit_transform(X)
 
 parameter_space = {
 
-    'hidden_layer_sizes': [(100, 1), (100, 2), (100, 3)],
+    'hidden_layer_sizes': [np.arange(3,13)],
     'alpha': [0.0001, 0.05],
     'activation': ["logistic", "relu", "Tanh"],
     'learning_rate': ['constant', 'adaptive', 'invscaling'],
@@ -28,8 +28,8 @@ parameter_space = {
     'tol': [1e-4, 1e-3, 1e-5]
 }
 mlp = MLPClassifier(
-    random_state=0, max_iter=300, verbose=True)
-clf = GridSearchCV(mlp, parameter_space, n_jobs=-1, cv=3, verbose=True)
+    random_state=0, max_iter=300)
+clf = GridSearchCV(mlp, parameter_space, n_jobs=-1, cv=3, verbose=3)
 clf.fit(X, y)
 print('Best parameters found:\n', clf.best_params_)
 
