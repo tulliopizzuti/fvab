@@ -5,12 +5,12 @@ import pandas as pd
 from sklearn.utils import shuffle
 from sklearn.preprocessing import StandardScaler
 
-mainPath = "/home/tullio/Scrivania/Projects/fvab_dataset/public_dataset100/03_MeanSitWalk/MeanSitWalk_1"
+mainPath = "/home/tullio/Scrivania/Projects/fvab_dataset/2"
 fileMeanSensors = "MeanSensors.csv"
 filePathMeanSensors=join(mainPath,fileMeanSensors)
-fileMeanSit = "MeanSensorsSit_1.csv"
+fileMeanSit = "MeanSensorsSit.csv"
 filePathMeanSit=join(mainPath,fileMeanSit)
-fileMeanWalk = "MeanSensorsWalk_1.csv"
+fileMeanWalk = "MeanSensorsWalk.csv"
 filePathMeanWalk=join(mainPath,fileMeanWalk)
 if path.exists(filePathMeanSensors): os.remove(filePathMeanSensors)
 meanSitCsv=pd.read_csv(filePathMeanSit)

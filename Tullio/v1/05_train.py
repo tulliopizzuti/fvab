@@ -8,7 +8,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import GridSearchCV
 import numpy as np
 
-mainPath = "/home/tullio/Projects/fvab_dataset/public_dataset100/04_MeanSensors/MeanSensors_2"
+mainPath = "/home/tullio/Projects/fvab_dataset/2"
 fileMeanSensors = "MeanSensors.csv"
 filePathMeanSensors = join(mainPath, fileMeanSensors)
 scaler = StandardScaler()

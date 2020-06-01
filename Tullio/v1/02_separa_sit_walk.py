@@ -4,7 +4,7 @@ from os import path
 import pandas as pd
 
 joinedFile = "JoinSensors.csv"
-mainPath = "/home/tullio/Projects/fvab_dataset/public_dataset100"
+mainPath = "/home/tullio/Projects/fvab_dataset/2"
 fileSit = "JoinSensorsSit.csv"
 fileWalk = "JoinSensorsWalk.csv"
 filePathJoin=join(mainPath,joinedFile)
