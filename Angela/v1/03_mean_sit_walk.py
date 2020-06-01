@@ -2,7 +2,7 @@ import os
 from os.path import join
 from os import path
 import pandas as pd
-mainPath = "/home/tullio/Scrivania/Projects/fvab_dataset/2"
+mainPath = "C:\\Users\\angel\\OneDrive\\Desktop\\progettoBiometria\\hmog_dataset\\public_dataset"
 
 joinedFile = "JoinSensors.csv"
 filePathJoin=join(mainPath,joinedFile)

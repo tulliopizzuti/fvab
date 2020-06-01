@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.utils import shuffle
 from sklearn.preprocessing import StandardScaler
 
-mainPath = "/home/tullio/Scrivania/Projects/fvab_dataset/2"
+mainPath = "C:\\Users\\angel\\OneDrive\\Desktop\\progettoBiometria\\hmog_dataset\\public_dataset"
 fileMeanSensors = "MeanSensors.csv"
 filePathMeanSensors=join(mainPath,fileMeanSensors)
 fileMeanSit = "MeanSensorsSit.csv"

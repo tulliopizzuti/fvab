@@ -8,7 +8,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import GridSearchCV
 import numpy as np
 
-mainPath = "/home/tullio/Projects/fvab_dataset/2"
+mainPath = "C:\\Users\\angel\\OneDrive\\Desktop\\progettoBiometria\\hmog_dataset\\public_dataset"
 fileMeanSensors = "MeanSensors.csv"
 filePathMeanSensors = join(mainPath, fileMeanSensors)
 scaler = StandardScaler()
@@ -28,7 +28,7 @@ parameter_space = {
     'tol': [1e-4, 1e-3, 1e-5]
 }
 mlp = MLPClassifier(
-    random_state=0, max_iter=300, verbose=True)
+    random_state=0, max_iter=1000, verbose=True)
 clf = GridSearchCV(mlp, parameter_space, n_jobs=-1, cv=3, verbose=True)
 clf.fit(X_train, y_train)
 print('Best parameters found:\n', clf.best_params_)
