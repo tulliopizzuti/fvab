@@ -25,7 +25,7 @@ filePathMeanWalk=join(mainPath,fileMeanWalk)
 if path.exists(filePathMeanSit): os.remove(filePathMeanSit)
 if path.exists(filePathMeanWalk): os.remove(filePathMeanWalk)
 
-chunksize = 10 ** 3
+chunksize = 10 ** 2
 printHeadSit=True
 printHeadWalk=True
 

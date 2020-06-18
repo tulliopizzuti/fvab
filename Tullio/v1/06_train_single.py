@@ -13,13 +13,10 @@ scaler = StandardScaler()
 sensors=pd.read_csv(filePathMeanSensors)
 y=sensors["GestureScenario"]
 X=sensors[["XAcc", "YAcc", "ZAcc", "XGyro", "YGyro", "ZGyro", "XMagn", "YMagn", "ZMagn"]]
-X=scaler.fit_transform(X)
+#X=scaler.fit_transform(X)
 X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.3, random_state=0)
 
 
 mlp = MLPClassifier(
-    random_state=0, max_iter=700, verbose=True).fit(X_train,y_train)
+    random_state=0, verbose=True).fit(X_train,y_train)
 print(mlp.score(X_test,y_test))
-'''
-0.9097729948100071
-'''

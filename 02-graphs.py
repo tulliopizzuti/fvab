@@ -3,7 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from os.path import join
 
-mainFilePath = '/home/tullio/Projects/fvab_dataset/joined_dataset50'
+mainFilePath = '/home/tullio/Projects/fvab_dataset/public_dataset'
 fileNameAccelerometer = "JoinedAccelerometer.csv"
 fileNameGyroscope = "JoinedGyroscope.csv"
 fileNameMagnetometer = "JoinedMagnetometer.csv"
@@ -11,11 +11,12 @@ fileNameMagnetometer = "JoinedMagnetometer.csv"
 pathAccelerometer = join(mainFilePath, fileNameAccelerometer)
 pathGyroscope = join(mainFilePath, fileNameGyroscope)
 pathMagnetometer = join(mainFilePath, fileNameMagnetometer)
-columns = ["ActivityID", "SysTime", "GestureScenario", "X", "Y", "Z", "PhoneOrientation"]
+columns =["ActivityID","GestureScenario", "X", "Y", "Z"]
 
 
 csvAccelerometer = pd.read_csv(pathAccelerometer,names=columns,usecols=["GestureScenario", "X", "Y", "Z"])
 csvAccelerometer.info(verbose=False, memory_usage="deep")
+print(csvAccelerometer)
 sitData = csvAccelerometer[(csvAccelerometer["GestureScenario"] == 1)]
 walkData = csvAccelerometer[(csvAccelerometer["GestureScenario"] == 2)]
 csvAccelerometer = None
@@ -35,7 +36,7 @@ pltZ.plot(sitData.Z.values, color="green", alpha=0.5)
 pltZ.plot(walkData.Z.values, color="blue", alpha=0.5)
 plt.show()
 
-csvGyroscope = pd.read_csv(pathGyroscope,names=columns,usecols=["GestureScenario", "X", "Y", "Z"])
+csvGyroscope = pd.read_csv(pathGyroscope,names=columns,usecols=["GestureScenario", "X", "Y", "Z"]).head(100)
 csvGyroscope.info(verbose=False, memory_usage="deep")
 sitData = csvGyroscope[(csvGyroscope["GestureScenario"] == 1)]
 walkData = csvGyroscope[(csvGyroscope["GestureScenario"] == 2)]

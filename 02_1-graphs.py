@@ -6,7 +6,7 @@ from os.path import join
 from mpl_toolkits import mplot3d
 def extracs_user_id(activityid):
     return activityid[:6]
-mainFilePath = '/home/tullio/Projects/fvab_dataset/joined_dataset2'
+mainFilePath = '/home/tullio/Projects/fvab_dataset/public_dataset'
 fileNameAccelerometer = "JoinedAccelerometer.csv"
 user_1='100669'
 user_2='984799'

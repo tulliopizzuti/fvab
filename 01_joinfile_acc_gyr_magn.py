@@ -30,7 +30,7 @@ if path.exists(logFilePath): os.remove(logFilePath)
 #Apro il file di log
 logFile = open(logFilePath,'a')
 # Colonne da estrarre sui file joinati
-columnExtract = ["ActivityID","SubjectID", "SysTime", "GestureScenario", "X", "Y", "Z", "PhoneOrientation"]
+columnExtract = ["ActivityID","GestureScenario", "X", "Y", "Z"]
 #Estrazione della lista delle cartelle dei soggetti
 subjectDirectories = [f for f in listdir(mainPath) if isdir(join(mainPath, f))]
 subjectDirectories.sort()
